@@ -5,6 +5,7 @@ import dotenv from 'dotenv'
 import { HardhatUserConfig, task } from 'hardhat/config'
 import '@nomiclabs/hardhat-waffle'
 import '@nomiclabs/hardhat-ganache'
+import '@nomiclabs/hardhat-etherscan'
 import 'hardhat-contract-sizer'
 
 dotenv.config()
@@ -38,7 +39,7 @@ const config: HardhatUserConfig = {
       url: 'http://127.0.0.1:8555',
       gasLimit: GAS_LIMIT,
     } as any,
-    rinkeby: {
+    goerli: {
       url: process.env.JSONRPC_HTTP_URL || 'http://127.0.0.1:8545',
       accounts,
     },
@@ -55,6 +56,11 @@ const config: HardhatUserConfig = {
       url: process.env.JSONRPC_HTTP_URL || 'https://arb1.arbitrum.io/rpc',
       accounts,
     },
+  },
+  etherscan: {
+    // Your API key for Etherscan
+    // Obtain one at https://etherscan.io/
+    apiKey: process.env.ETHERSCAN_API_KEY || 'YOUR_ETHERSCAN_API_KEY',
   },
   paths: {
     artifacts: 'build/contracts',
